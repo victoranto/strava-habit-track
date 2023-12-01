@@ -1,0 +1,32 @@
+.foto {
+    max-width: 124px;
+    width: 124px;
+    height: 124px;
+    position: relative;
+    background: linear-gradient(160deg, #1742b0, #c059ff, #801762);
+    border-radius: 50%;
+    align-self: center;
+    margin-bottom: 10px;
+
+    img {
+        max-width: 124px;
+        width: 124px;
+        height: 124px;
+        border-radius: 50%;
+        padding: 3px;
+      }
+  }
+  .profile{
+    display: inline-flex;
+    width: 30%;
+    justify-content: center;
+    flex-direction: column;
+
+    h1{
+        font-size: 20px;
+        line-height: 1.5;
+    }
+    h2{
+        font-size: 18px;
+    }
+  }
