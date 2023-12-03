@@ -24,8 +24,7 @@ export const testAuthGetter = async (authTok) => {
     }
 };
 
-export const getUserInfo = async (userID, accessToken) => {
-    console.log('STRAVA :(')
+export const getUserInfo = async (accessToken) => {
     try {
         const response = await fetch(`https://www.strava.com/api/v3/athlete`, {
             method: 'GET',
@@ -42,30 +41,21 @@ export const getUserInfo = async (userID, accessToken) => {
     }
 };
 
-// export const getUserData = async (userID, accessToken) => {
-//   try {
-//       const response = await axios.get(
-//           `https://www.strava.com/api/v3/athletes/${userID}/stats`,
-//           { headers: { Authorization: `Bearer ${accessToken}` } }
-//       );
-//       return response;
-//   } catch (error) {
-//       console.log(error);
-//   }
-// };
-
-// export const getUserInfo = async (accessToken) => {
-//   try {
-//       const response = await axios.get(
-//           `https://www.strava.com/api/v3/athlete`,
-//           { headers: { Authorization: `Bearer ${accessToken}` } }
-//       );
-//       store.dispatch(setUser(response.data));
-//       return response;
-//   } catch (error) {
-//       console.log(error);
-//   }
-// };
+export const getUserStats = async (userID, accessToken) => {
+  try {
+        const response = await fetch(
+            `https://www.strava.com/api/v3/athletes/${userID}/stats`,
+            { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        if (!response.ok) {
+            throw new Error('Error al obtener info User');
+        }
+        const data = await response.json();
+        return data;
+  } catch (error) {
+      console.log(error);
+  }
+};
 
 // export const getActivities = async (accessToken) => {
 //     try {
