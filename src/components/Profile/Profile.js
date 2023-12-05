@@ -9,7 +9,7 @@ const Profile = () => {
     
     useEffect(() => {
         const getUserData = async () => {
-            const userData = await getUserInfo(userState.userId, userState.stravaToken);
+            const userData = await getUserInfo(userState.stravaToken);
             dispatch({type: 'SET_STRAVA_USER', payload: userData})
         }
         if(!userState.user){

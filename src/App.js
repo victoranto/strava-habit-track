@@ -1,6 +1,6 @@
 import './styles/global.scss';
 import Header from './components/Header/Header';
-import Login from './components/Login/Login';
+import Body from './components/Body/Body';
 import Profile from './components/Profile/Profile';
 import { useContext } from 'react';
 import { UserContext } from './context/user';
@@ -15,7 +15,7 @@ function App() {
           { userState.isLoged && (
             <div>
               <Profile></Profile>
-              <Login></Login>
+              <Body></Body>
             </div>
           )
           }

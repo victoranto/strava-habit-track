@@ -40,7 +40,7 @@ const Header = () => {
     
     return (
         <header className='container'>
-            <div className='logo'><span>SHT</span></div>
+            <div className='logo'><span>. |</span></div>
             <div className='login'>
                 {userState.isLoged && (
                     <button className='btn' onClick={() => dispatch({type: "LOGOUT"})} >Logout</button>
