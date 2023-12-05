@@ -8,7 +8,6 @@ const Body = () => {
     const { state: userState, dispatch } = useContext(UserContext)
     const user = userState.stats
     const [total, setTotal] = useState(0)
-    //console.log(total)
 
     useEffect(() => {
         const getStats = async () => {

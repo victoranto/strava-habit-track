@@ -4,7 +4,6 @@ export const cleanStravaURL = () => {
 }
 
 export const getPercentActivities = (total, num) => {
-    console.log(total, num)
     return ((100*num)/total).toFixed(0)
 }
 
