@@ -3,6 +3,7 @@ import './Body.scss'
 import { UserContext } from '../../context/user';
 import { getUserStats } from '../../services/strava';
 import { getPercentActivities, formatTime } from '../../Helpers/StravaHelpers';
+import { Honeycomb } from '../Honeycomb/Honeycomb';
 
 const Body = () => {
     const { state: userState, dispatch } = useContext(UserContext)
@@ -75,6 +76,7 @@ const Body = () => {
                     </section>
                 </div>
             )}
+            <Honeycomb></Honeycomb>
         </div>
 
     )

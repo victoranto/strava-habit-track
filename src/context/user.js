@@ -7,6 +7,7 @@ const initialState = {
     userId: null,
     user: false,
     stats: false,
+    activities: false,
 }
 
 const reducer = (state, action) => {
@@ -43,6 +44,13 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 stats: action.payload,
+            }
+        }
+        case "SET_STRAVA_ACTIVITIES" : {
+            console.log(action.payload)
+            return {
+                ...state,
+                activities: action.payload,
             }
         }
         default: {
