@@ -1,8 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+$theme-colors: (
+  'info': tomato,
+  'danger': teal
+);
+
+@import '~bootstrap/scss/bootstrap';
+
 body{
     background-color: #282c34;
 }
@@ -14,20 +16,4 @@ body{
     flex-direction: column;
     font-size: calc(10px + 2vmin);
     color: white;
-
-    .container{
-        width: 1250px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center; 
-
-        &.body-app > div {
-            width: 100%;
-            display: flex;
-        }
-    }
-    .body-app{
-        margin-top: 50px;
-    }
 }
