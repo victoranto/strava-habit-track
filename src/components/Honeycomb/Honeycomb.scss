@@ -1,16 +1,4 @@
-.honeycomb{
-    background: #1c1b21;
-    border: 3px solid #1c1b21;
-    margin-top: 50px;
-
-    h3{
-        color: #cfced3;
-        font-size: 25px;
-        padding: 20px 10px;
-    }
-}
 .grid{
-    background-color: black;
     margin: 5px;
     display: flex;
     flex-direction: column;
@@ -35,6 +23,13 @@
 
 @media (max-width: 800px) {
     .grid{
-        height: 200px;
+        flex-direction: row;
+        height: auto;
+    }
+}
+.honeycomb{
+
+    span{
+        font-size: 20px;
     }
 }
