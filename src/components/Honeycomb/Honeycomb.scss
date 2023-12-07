@@ -1,0 +1,35 @@
+.grid{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: auto;
+    height: 120px;
+
+    .item{
+        height: 12px;
+        width: 12px;
+        background-color: transparent;
+        margin: 2px;
+        font-size: 15px;
+        color: #000;
+        border: 1px solid tomato;
+
+        &.active{
+            background-color: tomato;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .grid{
+        flex-direction: row;
+        height: auto;
+    }
+}
+.honeycomb{
+
+    span{
+        font-size: 20px;
+    }
+}

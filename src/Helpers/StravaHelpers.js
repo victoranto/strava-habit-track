@@ -14,3 +14,7 @@ export const formatTime = seconds => {
   
     return `${hours}h ${minutes}m`
 }
+
+export const getUnixTimestamp = dateString => {
+    return Math.floor(new Date(dateString).getTime() / 1000);
+}

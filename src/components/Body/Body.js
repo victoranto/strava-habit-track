@@ -3,6 +3,9 @@ import './Body.scss'
 import { UserContext } from '../../context/user';
 import { getUserStats } from '../../services/strava';
 import { getPercentActivities, formatTime } from '../../Helpers/StravaHelpers';
+import { Honeycomb } from '../Honeycomb/Honeycomb';
+import { Card, Col, ProgressBar, Row } from 'react-bootstrap';
+
 
 const Body = () => {
     const { state: userState, dispatch } = useContext(UserContext)
@@ -26,56 +29,70 @@ const Body = () => {
     },[userState])
 
     return (
-        <div className='body'>
-            {userState.stats && (
-                <div>
-                    <section className='stats'>
-                    <h3>All-time Stats</h3>
-                    <div className='boxes'>
-                        <div className="box">
-                        <div>
-                            <div className="chart">{getPercentActivities(total, user.all_ride_totals.count)}%</div>
-                            <div className="progress">
-                                <div className='percent' style={{ width: getPercentActivities(total, user.all_ride_totals.count) + '%' }}></div>
-                            </div>
-                            <div className="summary">
-                            <h4>Ride</h4>
-                            <p>{user.all_ride_totals.count }</p>
-                            <p>{formatTime(user.all_ride_totals.moving_time)}</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="box">
-                        <div>
-                            <div className="chart">{getPercentActivities(total, user.all_run_totals.count)}%</div>
-                            <div className="progress">
-                                <div className='percent' style={{ width: getPercentActivities(total, user.all_run_totals.count) + '%' }}></div>
-                            </div>
-                            <div className="summary">
-                            <h4>Run</h4>
-                            <p>{user.all_run_totals.count }</p>
-                            <p>{formatTime(user.all_run_totals.moving_time)}</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="box">
-                        <div>
-                            <div className="chart">{getPercentActivities(total, user.all_swim_totals.count)}%</div>
-                            <div className="progress">
-                                <div className='percent' style={{ width: getPercentActivities(total, user.all_swim_totals.count) + '%' }}></div>
-                            </div>
-                            <div className="summary">
-                            <h4>Swim</h4>
-                            <p>{user.all_swim_totals.count }</p>
-                            <p>{formatTime(user.all_swim_totals.moving_time)}</p>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </section>
-                </div>
-            )}
-        </div>
+        <>
+        {userState.stats && (
+            <>
+                <Row>
+                    <Col>
+                        <Card bg="dark" data-bs-theme="dark">
+                            <Card.Header>All-time Stats</Card.Header>
+                            <Card.Body>
+                                <Row>
+                                    <Col>
+                                        <Card bg="dark" data-bs-theme="dark">
+                                            <Card.Header>
+                                                <small>Ride</small>
+                                                <ProgressBar striped variant="info" now={getPercentActivities(total, user.all_ride_totals.count)} label={`${getPercentActivities(total, user.all_ride_totals.count)}%`}></ProgressBar>
+                                            </Card.Header>
+                                            <Card.Body>
+                                                <Card.Title>{user.all_ride_totals.count } activities</Card.Title>
+                                                <Card.Text>
+                                                    {formatTime(user.all_ride_totals.moving_time)}
+                                                </Card.Text>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                    <Col>
+                                        <Card bg="dark" data-bs-theme="dark">
+                                            <Card.Header>
+                                                <small>Run</small>
+                                                <ProgressBar striped variant="info" now={getPercentActivities(total, user.all_run_totals.count)} label={`${getPercentActivities(total, user.all_run_totals.count)}%`}></ProgressBar>
+                                            </Card.Header>
+                                            <Card.Body>
+                                                <Card.Title>{user.all_run_totals.count } activities</Card.Title>
+                                                <Card.Text>
+                                                    {formatTime(user.all_run_totals.moving_time)}
+                                                </Card.Text>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                    <Col>
+                                        <Card bg="dark" data-bs-theme="dark">
+                                            <Card.Header>
+                                                <small>Swim</small>
+                                                <ProgressBar striped variant="info" now={getPercentActivities(total, user.all_swim_totals.count)} label={`${getPercentActivities(total, user.all_swim_totals.count)}%`}></ProgressBar>
+                                            </Card.Header>
+                                            <Card.Body>
+                                                <Card.Title>{user.all_swim_totals.count } activities</Card.Title>
+                                                <Card.Text>
+                                                    {formatTime(user.all_swim_totals.moving_time)}
+                                                </Card.Text>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Honeycomb></Honeycomb>
+                    </Col>
+                </Row>
+            </>
+        )}
+        </>
 
     )
 }

@@ -24,8 +24,8 @@ const Profile = () => {
                     <div className="foto">
                         <img src={user.profile} ></img>
                     </div>
-                    <h1>{user.firstname} {user.lastname}</h1>
-                    <h2>{user.city} - {user.country}</h2>
+                    <h1 className="h4" >{user.firstname} {user.lastname}</h1>
+                    <h2 className="h5">{user.city} - {user.country}</h2>
                 </div>
             )}
         </div>
