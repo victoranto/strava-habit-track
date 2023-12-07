@@ -8,6 +8,7 @@ const initialState = {
     user: false,
     stats: false,
     activities: false,
+    activitiesLoading: false,
 }
 
 const reducer = (state, action) => {
@@ -33,24 +34,28 @@ const reducer = (state, action) => {
             }
         }
         case "SET_STRAVA_USER" : {
-            console.log(action.payload)
             return {
                 ...state,
                 user: action.payload,
             }
         }
         case "SET_STRAVA_USER_STATS" : {
-            console.log(action.payload)
             return {
                 ...state,
                 stats: action.payload,
             }
         }
         case "SET_STRAVA_ACTIVITIES" : {
-            console.log(action.payload)
             return {
                 ...state,
                 activities: action.payload,
+                activitiesLoading: false,
+            }
+        }
+        case "SET_STRAVA_ACTIVITIES_LOADING" : {            
+            return {
+                ...state,
+                activitiesLoading: true,
             }
         }
         default: {

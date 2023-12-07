@@ -1,8 +1,4 @@
-// import axios from "axios";
-// import { setUser } from '../redux/actions/userActions'
-// import store from '../redux/store'
-
-import { cleanStravaURL } from "../Helpers/StravaHelpers";
+import { cleanStravaURL, getUnixTimestamp } from "../Helpers/StravaHelpers";
 
 const { REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET } = process.env;
 
@@ -57,18 +53,13 @@ export const getUserStats = async (userID, accessToken) => {
   }
 };
 
-function getUnixTimestamp(dateString) {
-    return Math.floor(new Date(dateString).getTime() / 1000);
-  }
 
-export const getActivities = async (accessToken, page, result = null) => {
-    const year = '2023';
+
+export const getActivities = async (accessToken, page, year, result = null) => {
     const perPage = 50;
 
     const fromDate = getUnixTimestamp(`${year}-01-01T00:00:00Z`);
     const toDate = getUnixTimestamp(`${year}-12-31T23:59:59Z`);
-
-    let url =  `https://www.strava.com/api/v3/athlete/activities?after=${fromDate}&before=${toDate}&page=${page}&per_page=${perPage}`;
 
     const response = await fetch(
         `https://www.strava.com/api/v3/athlete/activities?after=${fromDate}&before=${toDate}&page=${page}&per_page=${perPage}`,
@@ -84,32 +75,7 @@ export const getActivities = async (accessToken, page, result = null) => {
         result.push(...data);
     }
     if (data.length > 0) {
-        result = await getActivities(accessToken, page + 1, result);
+        result = await getActivities(accessToken, page + 1, year, result);
     }
     return result;
 };
-
-//   export const getActivitiesByDate = async (accessToken, from, to) => {
-//     try {
-//         console.log('to:', to, 'from:', from)
-//         const response = await axios.get(
-//             `https://www.strava.com/api/v3/athlete/activities`,
-//             { headers: { Authorization: `Bearer ${accessToken}` }, params: { 'before': from, 'after':to } }
-//         );
-//         return response;
-//     } catch (error) {
-//         console.log(error);
-//     }
-//   };
-
-// export const getActivity = async (accessToken, id) => {
-//     try {
-//         const response = await axios.get(
-//             `https://www.strava.com/api/v3/activities/${id}`,
-//             { headers: { Authorization: `Bearer ${accessToken}` } }
-//         );
-//         return response;
-//     } catch (error) {
-//         console.log(error);
-//     }
-//   };

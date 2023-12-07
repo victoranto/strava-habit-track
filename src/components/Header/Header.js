@@ -4,6 +4,10 @@ import { UserContext } from '../../context/user';
 import { testAuthGetter } from '../../services/strava';
 import { cleanStravaURL } from '../../Helpers/StravaHelpers';
 
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+
 const { REACT_APP_CLIENT_ID, REACT_APP_STRAVA_REDIRECT_URL } = process.env
 
 const Header = () => {
@@ -39,17 +43,27 @@ const Header = () => {
       }, []); 
     
     return (
-        <header className='container'>
-            <div className='logo'><span>. |</span></div>
-            <div className='login'>
-                {userState.isLoged && (
-                    <button className='btn' onClick={() => dispatch({type: "LOGOUT"})} >Logout</button>
-                )}
-                {!userState.isLoged && (
-                    <button className='btn' onClick={handleLogin} >Login</button>
-                )}
-                
-            </div>
+        <header>
+            <Navbar className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
+                <Container>
+                    <Navbar.Brand href="#home"><div className='logo'><span>. |</span></div></Navbar.Brand>
+                    <Navbar.Toggle />
+                    <Navbar.Collapse className="justify-content-end">
+                        <Navbar.Text>
+                            {userState.isLoged && (
+                                <>
+                                    <Button variant="danger" onClick={() => dispatch({type: "LOGOUT"})}>Logout</Button>
+                                </>
+                            )}
+                            {!userState.isLoged && (
+                                <>
+                                    <Button variant="info" onClick={handleLogin} >Login</Button>
+                                </>
+                            )}
+                        </Navbar.Text>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </header>
     )
 }
