@@ -9,6 +9,7 @@ const initialState = {
     stats: false,
     activities: false,
     activitiesLoading: false,
+    shareUrl: null,
 }
 
 const reducer = (state, action) => {
@@ -56,6 +57,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 activitiesLoading: true,
+            }
+        }
+        case "SET_STRAVA_ACTIVITIES_SHARE_URL" : {            
+            return {
+                ...state,
+                shareUrl: action.payload,
             }
         }
         default: {
