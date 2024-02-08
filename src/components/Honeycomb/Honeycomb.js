@@ -26,15 +26,16 @@ export const Honeycomb = () => {
     const {state: userState, dispatch } = useContext(UserContext)
     const printRef = useRef()
     const [imageUrl, setImageUrl] = useState('')
+    const year = new Date().getFullYear()
 
     function generarDiasDelAnio() {
         const diasDelAnio = []
         const meses = 12
         
         for (let mes = 0; mes < meses; mes++) {
-            const diasEnElMes = new Date(2023, mes + 1, 0).getDate() 
+            const diasEnElMes = new Date(year, mes + 1, 0).getDate() 
             for (let dia = 1; dia <= diasEnElMes; dia++) {
-            const fecha = new Date(2023, mes, dia)
+            const fecha = new Date(year, mes, dia)
             diasDelAnio.push(fecha.toLocaleDateString())
             }
         }
@@ -52,7 +53,7 @@ export const Honeycomb = () => {
     useEffect(() => {
         const getActs = async () => {
             dispatch({type:'SET_STRAVA_ACTIVITIES_LOADING'})
-            const act = await getActivities(userState.stravaToken, 1, 2023)
+            const act = await getActivities(userState.stravaToken, 1, year)
             setTimeout(() => {
                 generateImage()
             }, 1000);
@@ -87,7 +88,7 @@ export const Honeycomb = () => {
     return (
         <section className="honeycomb mt-3">
             <Card bg="dark" data-bs-theme="dark" ref={printRef}>
-                <Card.Header>Year in Motion: 2023 Activity Showcase</Card.Header>
+                <Card.Header>Year in Motion: {year} Activity Showcase</Card.Header>
                 <Card.Body>
                     {userState.activitiesLoading && (
                         <>
